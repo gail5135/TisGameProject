@@ -16,9 +16,8 @@
 		<div class="container">
 			<div>
 				<a class="" href="${pageContext.request.contextPath}/main.do">
-					<!-- <i class="fa d-inline fa-gamepad fa-lg pull-right fa-fw"></i> -->
 					<img style="width:300px" src="./images/tisgameworldlogo3.png">
-					<!-- test -->
+					<!-- <i class="fa d-inline fa-gamepad fa-lg pull-right fa-fw"></i> -->
 				</a>
 			</div>
 			<div class="collapse navbar-collapse">
