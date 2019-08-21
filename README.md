@@ -1,4 +1,4 @@
 # TisGameProject
 TIS GAME PROJECT
 TEST
-hello world
+printf("hi");
