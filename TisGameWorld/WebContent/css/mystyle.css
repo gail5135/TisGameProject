@@ -1,0 +1,13 @@
+/* body div {
+    border: 1px solid black;
+} */
+body, .navbar {
+    background-color: rgb(167, 230, 255);
+}
+ul.navbar-right {
+    margin-right: 0;
+}
+ul.nav li {
+    font-size: 18px;
+    font-weight: bold;
+}
