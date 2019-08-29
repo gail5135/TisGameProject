@@ -45,7 +45,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Notice</a></li>
-                            <li><a href="#">Flap Jellyfish</a></li>
+                            <li><a href="${pageContext.request.contextPath}/boardList.do">Free Board</a></li>
                             <li><a href="#">HC Jam</a></li>
                         </ul>
                     </li>
@@ -54,8 +54,8 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">1 to 50</a></li>
-                            <li><a href="#">Flap Jellyfish</a></li>
-                            <li><a href="#">HC Jam</a></li>
+                            <li><a href="${pageContext.request.contextPath}/jellyfish.do">Flap Jellyfish</a></li>
+                            <li><a href="${pageContext.request.contextPath}/hcjam.do">HC Jam</a></li>
                         </ul>
                     </li>
                 </ul>
