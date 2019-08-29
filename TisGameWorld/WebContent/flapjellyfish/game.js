@@ -430,8 +430,8 @@ const score= {
             ctx.fillText(this.value, 270, 500);
             ctx.strokeText(this.value, 270, 500);
             // BEST SCORE
-            ctx.fillText(this.best, 260, 620);
-            ctx.strokeText(this.best, 260, 620);
+            ctx.fillText(this.best, 270, 620);
+            ctx.strokeText(this.best, 270, 620);
         }
     },
     
