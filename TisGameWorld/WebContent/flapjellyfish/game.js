@@ -8,32 +8,32 @@ const DEGREE = Math.PI/180; //원주율(3.14...)/180 => 1도의 값
 
 // load 스프라이트 이미지
 const sprite = new Image();
-sprite.src = "./flapjellyfish/img/image.png";//스프라이트 이미지 경로
+sprite.src = "img/image.png";//스프라이트 이미지 경로
 
 // load 사운드
 const SCORE_S = new Audio();
-SCORE_S.src = "./flapjellyfish/audio/sfx_point.wav";
+SCORE_S.src = "audio/sfx_point.wav";
 
 const FLAP = new Audio();
-FLAP.src = "./flapjellyfish/audio/sfx_flap.wav";
+FLAP.src = "audio/sfx_flap.wav";
 
 const HIT = new Audio();
-HIT.src = "./flapjellyfish/audio/sfx_hit.wav";
+HIT.src = "audio/sfx_hit.wav";
 
 const SWOOSHING = new Audio();
-SWOOSHING.src = "./flapjellyfish/audio/sfx_swooshing.wav";
+SWOOSHING.src = "audio/sfx_swooshing.wav";
 
 const DIE = new Audio();
-DIE.src = "./flapjellyfish/audio/sfx_die.wav";
+DIE.src = "audio/sfx_die.wav";
 
 const BGM = new Audio();
-BGM.src = "./flapjellyfish/audio/bgm.wav"
+BGM.src = "audio/bgm.wav"
 
 const BGM2 = new Audio();
-BGM2.src = "./flapjellyfish/audio/bgm2.wav"
+BGM2.src = "audio/bgm2.wav"
 
 const BGM3 = new Audio();
-BGM3.src = "./flapjellyfish/audio/bgm3.wav"
+BGM3.src = "audio/bgm3.wav"
 
 // 게임 상태
 const state = {
