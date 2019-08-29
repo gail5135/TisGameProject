@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 
 <jsp:include page="/top.jsp" />
@@ -71,3 +72,10 @@
 </div>
 
 <jsp:include page="/foot.jsp" />
+=======
+    pageEncoding="UTF-8"%>
+
+<jsp:include page="/top.jsp"/>
+<jsp:include page="/contents.jsp"/>
+<jsp:include page="/foot.jsp"/>
+>>>>>>> refs/remotes/origin/YINGXIONGLIANMENG

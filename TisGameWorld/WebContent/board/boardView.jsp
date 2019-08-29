@@ -8,6 +8,7 @@
 
 <c:import url="/top.jsp" />
 
+<<<<<<< HEAD
 <div align="center" class="container">
 	<div class="row">
 		<div class="col-md-12 col-md-offset-2">
@@ -92,6 +93,92 @@
 	<!-- 댓글 목록 가져오기-------------------------------------------- -->
 	<div class="row">
 		<div class="col-md-12 col-md-offset-2">
+=======
+<div align="center" class="section">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<hgroup>
+				<h1>글 내용 보기</h1>
+			</hgroup>
+			<br>
+			<!-- ${board} -->
+			<c:if test="${board eq null}">
+				<!-- eq(== 과 동일한 연산다, ne(not equal !=와 동일) -->
+				<h3 style="color: red">존재하지 않는 글입니다.</h3>
+			</c:if>
+			<c:if test="${board ne null}">
+
+				<table class="table table-bordered">
+					<tr>
+						<td width="20%">글번호</td>
+						<td width="30%"><c:out value="${board.idx}" /></td>
+						<td width="20%">작성일</td>
+						<td width="30%"><c:out value="${board.wdate}" /></td>
+					</tr>
+					<tr>
+						<td width="20%">글쓴이</td>
+						<td width="30%"><c:out value="${board.name}" /></td>
+						<td width="20%">조회수</td>
+						<td width="30%"><c:out value="${board.readnum}" /></td>
+					</tr>
+
+					<tr>
+						<td width="20%">제목</td>
+						<td colspan="3" align="left"><c:out value="${board.subject}" />
+						</td>
+					</tr>
+					<tr height="60">
+						<td width="20%">글내용</td>
+						<td colspan="3" align="left"><c:out value="${board.content}" />
+						</td>
+					</tr>
+					<tr>
+						<td width="20%">첨부파일</td>
+						<td colspan="3">
+							<!-- 첨부 파일이 있다면 --> <c:if test="${board.filename ne null }">
+								<a
+									href="<%=request.getContextPath()%>/FileDown?filename=${board.filename}">
+									<!-- FileDownloadServlet과 매핑된 FileDown을 걸어준다. --> <c:out
+										value="${board.filename}" />
+								</a> [ <c:out value="${board.filesize}" /> bytes]  
+				<c:if
+									test="${fn:endsWith(board.filename, '.jpg') or fn:endsWith(board.filename,'.png')}">
+									<!-- -fn:endsWith:board.filename이 .jpg or .png으로 끝난다면 -->
+									<img width="80px" class="img img-thumbnail"
+										src="board/Upload/${board.filename}">
+								</c:if>
+							</c:if>
+
+
+						</td>
+					</tr>
+
+
+
+					<tr>
+						<td colspan="4" align=center><a href="boardForm.do">글쓰기</a>|
+							<a href="boardList.do">목록</a>| <a href="#"
+							onclick="go('${board.idx}',1)">편집</a>| <a href="#"
+							onclick="go('${board.idx}',2)">삭제</a>| <a
+							href="javascript:goRe()">답변</a></td>
+					</tr>
+				</table>
+		</div>
+	</div>
+	</c:if>
+	<!-- 댓글 달기 폼 시작-------------------------------------------- -->
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<jsp:include page="replyWrite.jsp" />
+		</div>
+	</div>
+	<!-- ------------------------------------------------------------- -->
+
+
+	<!-- 댓글 목록 가져오기-------------------------------------------- -->
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+>>>>>>> refs/remotes/origin/YINGXIONGLIANMENG
 			<jsp:include page="replyList.jsp" />
 		</div>
 	</div>

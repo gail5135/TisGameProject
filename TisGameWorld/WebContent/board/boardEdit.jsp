@@ -36,8 +36,12 @@
 		<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
 			<!-- <h1>MVC Board</h1> -->
 			<p>
+<<<<<<< HEAD
 			<!-- <a><img src="./images/mvcboard.png"></a> -->
 			<h1>글쓰기</h1>
+=======
+			<a><img src="./images/mvcboard.png"></a>
+>>>>>>> refs/remotes/origin/YINGXIONGLIANMENG
 			<p>
 			<p>
 				<a href="<%=ctx%>/board.do#bbs">글쓰기</a>| <a
