@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row bg-dark">
         <div class="p-5 col-lg-6 col-10 mx-auto border-0">
-          <img class="img-fluid d-block mb-3" src="./images/tisgameworldlogo.png" id="logo">
+          <img class="img-fluid d-block mb-3" style="width:200px" src="./images/tisgameworldlogo.png" id="logo">
           <form>
             <div class="form-group"> <input type="text" class="form-control text-center bg-info text-dark" placeholder="Enter your ID" id="form9"> </div>
             <div class="form-group"> <input type="password" class="form-control bg-info text-center text-dark" placeholder="Password" id="form10"> </div> <button type="submit" class="btn btn-warning btn-block mb-2">LOG IN</button><button type="submit" class="btn btn-danger btn-block">JOIN</button>

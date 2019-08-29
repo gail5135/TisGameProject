@@ -11,12 +11,12 @@
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 </head>
 
-<body class="bg-dark">
+<body class="">
   <div class="text-center bg-dark text-white py-3">
     <div class="container">
       <div class="row bg-dark">
         <div class="p-5 col-lg-6 col-10 mx-auto border-0">
-          <img class="img-fluid d-block mb-3" src="./images/tisgameworldlogo.png" id="logo">
+          <img class="img-fluid d-block mb-3" style="width: 200px; text-align:center" src="./images/tisgameworldlogo.png" id="logo">
           <form class="text-left">
             <div class="form-group text-center"> <label for="form18">Your ID</label> <input type="text" class="form-control text-center" id="form18" placeholder="사용하실 ID를 입력해주세요."> </div>
             <div class="form-row">

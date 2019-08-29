@@ -25,101 +25,21 @@
 	}
 </script>
 
-
 <div class="section">
 	<div class="row">
 		<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
-			<!-- <h1>Spring Board</h1> -->
-			<!-- <a><img src="./images/mvcboardlist.png"></a> -->
-			<h1>자유게시판</h1>
-			<p>
+			<h1>Spring Board</h1>
 			<!-- ${boardArr} -->
 			<p>
-				<a href="<%=ctx%>/boardForm.do">글쓰기</a> | <a
+				<a href="<%=ctx%>/boardForm.do">글쓰기</a>| <a
 					href="<%=ctx%>/boardList.do">글목록</a>
 			<p>
-			
-			<table class="table table-condensed table-striped">
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>글쓴이</th>
-					<th>날짜</th>
-					<th>조회수</th>
-				</tr>
-				<!-- ---------------------------- -->
-				<c:if test="${boardArr==null or empty boardArr}">
-					<tr>
-						<td colspan="5"><b>게시글이 없습니다.</b></td>
-					</tr>
-				</c:if>
-				<c:if test="${boardArr !=null and not empty boardArr}">
-					<c:forEach var="board" items="${boardArr}">
-						<tr>
-							<td><c:out value="${board.idx}" /></td>
-							<td align="left"><a href="boardView.do?idx=${board.idx}">
-									<c:out value="${board.subject}" />
-									<c:if test="${board.replyCount>0}">
-									<span class="badge">
-										<c:out value="${board.replyCount}"/>
-									</span>
-									</c:if>
-									<!-- &nbsp -->
-									<c:if test="${board.filesize>0}">
-									<img src="./images/skin3.gif">
-									</c:if>
-									<!-- &nbsp -->
-									<c:if test="${board.readnum>=10}">
-									<img src="./images/hot2.gif">
-									</c:if>
-							</a></td>
-							<td><c:out value="${board.name}" /></td>
-							<td><c:out value="${board.wdate}" /></td>
-							<td><c:out value="${board.readnum}" /></td>
-						</tr>
-						
-					</c:forEach>
-				</c:if>
-				<!-- ----------------------------- -->
-				<tr>
-					<td colspan="3" class="text-center">
-					<c:set var="qstr" value="&findType=${findType}&findKeyword=${findKeyword}"/><!-- -문자열 생성한 변수를 선언하고 싶을때 set  -->
-						<ul class="pagination">
-							<c:if test="${prevBlock>0}">
-								<li><a href="boardList.do?cpage=${firstCount}${qstr}">맨 앞으로</a></li>
-								<li><a href="boardList.do?cpage=${prevBlock}${qstr}">이전</a></li>
-							</c:if>
-							<c:forEach var="i" begin="${prevBlock+1}" end="${nextBlock-1}">
-							<c:if test="${i<=pageCount}">
-
-								<li
-									<c:if test="${cpage eq i}">
-							class='active'
-						</c:if>><a
-									href="boardList.do?cpage=${i}${qstr}">${i}</a></li>
-							</c:if>		
-									
-							</c:forEach>
-							<c:if test="${nextBlock<=pageCount}">
-								<li><a href="boardList.do?cpage=${nextBlock}${qstr}">다음</a></li>
-								<li><a href="boardList.do?cpage=${lastCount}${qstr}">맨 뒤로</a></li>
-							</c:if>
-						</ul>
-					</td>
-					<td colspan="2">총게시물수: <span class="text-danger"
-						style="font-weight: bold">${totalCount} 개</span> <br> <span
-						class="text-danger" style="font-weight: bold">${cpage }</span> /
-						${pageCount} pages
-					</td>
-				</tr>
-
-			</table>
 			<div class="section">
 				<div class="row">
 					<!-- 검색 폼 시작--------------------- -->
 					<form name="sf" action="boardList.do" onsubmit="return check()">
 					<!-- hidden data---------------------------------------- -->
-					<input type="hidden" name="cpage" value="${cpage}">
+					<!--<input type="hidden" name="cpage" value="${cpage}">-->
 					<!-- --------------------------------------------------- -->
 						<div class="col-md-2">
 							<select name="findType" class="form-control">
@@ -156,8 +76,71 @@
 					</form>
 				</div>
 			</div>
+			<table class="table table-condensed table-striped">
+				<tr>
+					<th>글번호</th>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>날짜</th>
+					<th>조회수</th>
+				</tr>
+				<!-- ---------------------------- -->
+				<c:if test="${boardArr==null or empty boardArr}">
+					<tr>
+						<td colspan="5"><b>게시글이 없습니다.</b></td>
+					</tr>
+				</c:if>
+				<c:if test="${boardArr !=null and not empty boardArr}">
+					<c:forEach var="board" items="${boardArr}">
+						<tr>
+							<td><c:out value="${board.idx}" /></td>
+							<td align="left"><a href="boardView.do?idx=${board.idx}">
+									<c:out value="${board.subject}" />
+							</a></td>
+							<td><c:out value="${board.name}" /></td>
+							<td><c:out value="${board.wdate}" /></td>
+							<td><c:out value="${board.readnum}" /></td>
+						</tr>
+						
+					</c:forEach>
+				</c:if>
+				<!-- ----------------------------- -->
+				<tr>
+					<td colspan="3" class="text-center">
+					<c:set var="qstr" value="&findType=${findType}&findKeyword=${findKeyword}"/><!-- -문자열 생성한 변수를 선언하고 싶을때 set  -->
+						<ul class="pagination">
+							<c:if test="${prevBlock>0}">
+								<li><a href="boardList.do?cpage=${prevBlock}${qstr}">이전
+										${pagingBlock}개</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${prevBlock+1}" end="${nextBlock-1}">
+							<c:if test="${i<=pageCount}">
+
+								<li
+									<c:if test="${cpage eq i}">
+							class='active'
+						</c:if>><a
+									href="boardList.do?cpage=${i}${qstr}">${i}</a></li>
+							</c:if>		
+									
+							</c:forEach>
+							<c:if test="${nextBlock<=pageCount}">
+								<li><a href="boardList.do?cpage=${nextBlock}${qstr}">이후
+										${pagingBlock}개</a></li>
+							</c:if>
+						</ul>
+					</td>
+					<td colspan="2">총게시물수: <span class="text-danger"
+						style="font-weight: bold">${totalCount} 개</span> <br> <span
+						class="text-danger" style="font-weight: bold">${cpage }</span> /
+						${pageCount} pages
+					</td>
+				</tr>
+
+			</table>
 			
+			<embed src="http://funnfun.net/gohyangmandoo.swf" quality="high" width="800" height="600" align="middle" wmode="window" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+
 		</div>
-	</div>
 	</div>
 	<c:import url="/foot.jsp" />
