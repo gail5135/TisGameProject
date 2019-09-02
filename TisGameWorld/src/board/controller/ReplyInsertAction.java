@@ -19,18 +19,21 @@ public class ReplyInsertAction extends AbstractAction {
 		String content=req.getParameter("content");
 		
 		if(userid==null||idx_fk==null||userid.trim().isEmpty()||idx_fk.trim().isEmpty()) {
-			this.setViewPage("../boardList.do");
+			/* this.setViewPage("../boardList.do"); */
+			this.setViewPage("boardList.do");
 			this.setRedirect(true);
 			return;
 		}
 		
 		//ReplyVO에 담기
 		ReplyVO reply = new ReplyVO(null, userid, content, null, idx_fk);
+		//System.out.println(userid);
 		
 		//BoardDAOMyBatis의 insertReply호출 후 메시지 처리
 		BoardDAOMyBatis dao = new BoardDAOMyBatis();
 		int n=dao.insertReply(reply);
-		this.setViewPage("../boardView.do?idx="+idx_fk);
+		/* this.setViewPage("../boardView.do?idx="+idx_fk); */
+		this.setViewPage("boardView.do?idx="+idx_fk);
 		this.setRedirect(true);
 		
 		/*

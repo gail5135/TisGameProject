@@ -34,13 +34,13 @@
 <div class="container">
 	<div class="row">
 		<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
-			<!-- <h1>MVC Board</h1> -->
+			<h1>FREE BOARD WRITE</h1>
 			<p>
-			<a><img src="./images/mvcboard.png"></a>
+			<!-- <a><img src="./images/mvcboard.png"></a> -->
 			<p>
 			<p>
-				<a href="<%=ctx%>/board.do#bbs">글쓰기</a> | <a
-					href="<%=ctx%>/boardList.do#bbs">글목록</a>
+				<a href="<%=ctx%>/boardForm.do">글쓰기</a> | <a
+					href="<%=ctx%>/boardList.do">글목록</a>
 			<p>
 				<!--파일 업로드시
 	method: POST
@@ -79,7 +79,7 @@
 							id="filename" class="form-control"></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="2" align="center">
 							<button type="button" id="btnWrite" class="btn btn-success">글쓰기</button>
 							<button type="reset" id="btnReset" class="btn btn-warning">다시쓰기</button>
 						</td>

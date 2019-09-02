@@ -8,6 +8,7 @@
   <typeAliases>
   	<typeAlias type="board.model.BoardVO" alias="Board"/><!-- =board.model.BoardVO을 Board로 부른다. -->
   	<typeAlias type="board.model.ReplyVO" alias="Reply"/>
+  	<typeAlias type="notice.model.NoticeVO" alias="Notice"/>
   </typeAliases>
   <!-- ================================== -->
   
@@ -26,6 +27,7 @@
   <!-- ===================================== -->
   <!-- =sql문은 여기서 참조한다 -->
    <mapper resource="board/model/BoardMapper.xml" />
+   <mapper resource="notice/model/NoticeMapper.xml" />
   <!-- ===================================== -->
   </mappers>
  </configuration>

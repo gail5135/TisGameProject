@@ -56,6 +56,11 @@ public class BoardInsertAction extends AbstractAction {
 		long filesize=(file!=null)? file.length():0; //첨부파일 크기 -3항연산자 사용
 		//-BoardVo로 넘긴다.
 		
+		System.out.println(name);
+		System.out.println(pwd);
+		System.out.println(subject);
+		System.out.println(content);
+		
 		BoardVO board=new BoardVO(null,name,pwd,subject,content,null,0,filename,filesize);
 		BoardDAOMyBatis dao=new BoardDAOMyBatis();
 		

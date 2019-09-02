@@ -33,7 +33,7 @@
 		<form name="pF" id="pF" class="form-inline" action="">
 			<input type="hidden" name="mode" id="mode" value="${mode}">
 			<input type="hidden" name="idx" id="idx" value="${idx}">
-			<label>게시글 비밀번호</label>
+			<label>INPUT PASSWORD</label>
 			<input type="password" name="pwd" class="form-control" placeholder="Password">
 			<button type="button" id="btnBoard" class="btn btn-primary">${title}</button>
 		</form>

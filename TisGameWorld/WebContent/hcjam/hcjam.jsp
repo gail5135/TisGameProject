@@ -3,6 +3,6 @@
 
 <jsp:include page="/top.jsp"/>
 <div class="container">
-<iframe src="http://hcrhythmgame-env.tyyht7ptjb.ap-northeast-2.elasticbeanstalk.com/" width="1150" height="960" scrolling="no" frameborder="0"></iframe>
+<iframe src="http://hcrhythmgame-env.cisikmyfpy.ap-northeast-2.elasticbeanstalk.com/" width="1150" height="960" scrolling="no" frameborder="0"></iframe>
 </div>
 <jsp:include page="/foot.jsp"/>

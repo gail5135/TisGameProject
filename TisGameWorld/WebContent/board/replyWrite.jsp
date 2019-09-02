@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- "user/***.do"패턴은 로그인해야 이용 가능하도록 처리 예정 -->
-<form name="rf" id="rf" action="user/replyInsert.do">
-	<input type="hidden" name="userid" value="${loginUser.userid}">
+<!-- <form name="rf" id="rf" action="user/replyInsert.do"> -->
+	<form name="rf" id="rf" action="replyInsert.do">
 	<input type="hidden" name="idx_fk" value="${board.idx}">
 	<table class="table">
 		<tr>
@@ -11,7 +11,8 @@
 			</th>
 		</tr>
 		<tr>
-			<td>작성자			
+			<td>작성자<p>
+			<input type="text" name="userid" placeholder="닉네임을 입력하세요"><!-- value="${loginUser.userid}" -->		
 			</td>
 			<td>
 			<textarea name="content" rows="3" cols="70" class="form-control"></textarea><!-- -붙여놔야함 엔터만 쳐도 데이터가 있는것으로 판단 -->

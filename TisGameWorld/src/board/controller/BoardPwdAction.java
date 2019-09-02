@@ -24,9 +24,9 @@ public class BoardPwdAction extends AbstractAction {
 		int md = Integer.parseInt(mode);
 		String title="";
 		if (md==1) {
-			title="글 편집";
+			title="MODIFY";
 		}else if (md==2) {
-			title="글 삭제";
+			title="DELETE";
 		}
 		req.setAttribute("idx", idx);
 		req.setAttribute("mode", mode);

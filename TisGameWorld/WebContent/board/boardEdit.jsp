@@ -34,18 +34,13 @@
 <div class="container">
 	<div class="row">
 		<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
-			<!-- <h1>MVC Board</h1> -->
+			<h1>FREE BOARD</h1>
 			<p>
-<<<<<<< HEAD
 			<!-- <a><img src="./images/mvcboard.png"></a> -->
-			<h1>글쓰기</h1>
-=======
-			<a><img src="./images/mvcboard.png"></a>
->>>>>>> refs/remotes/origin/YINGXIONGLIANMENG
 			<p>
 			<p>
-				<a href="<%=ctx%>/board.do#bbs">글쓰기</a>| <a
-					href="<%=ctx%>/boardList.do#bbs">글목록</a>
+				<a href="<%=ctx%>/boardForm.do">글쓰기</a> | <a
+					href="<%=ctx%>/boardList.do">글목록</a>
 			<p>
 				<!--파일 업로드시
 	method: POST

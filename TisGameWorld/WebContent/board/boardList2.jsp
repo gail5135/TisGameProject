@@ -28,10 +28,10 @@
 
 <div class="section">
 	<div class="row">
-		<div align="center" id="bbs" class="col-md-8 col-md-offset-2">
+		<div align="center" id="bbs" class="col-md-10 col-md-offset-1">
 			<!-- <h1>Spring Board</h1> -->
 			<!-- <a><img src="./images/mvcboardlist.png"></a> -->
-			<h1>자유게시판</h1>
+			<h1>FREE BOARD</h1>
 			<p>
 			<!-- ${boardArr} -->
 			<p>

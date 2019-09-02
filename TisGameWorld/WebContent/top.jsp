@@ -35,25 +35,25 @@
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="${pageContext.request.contextPath}/main.do">Home</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="${pageContext.request.contextPath}/about.do">About</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Board
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Notice</a></li>
+                            <li><a href="${pageContext.request.contextPath}/noticeList.do">Notice</a></li>
                             <li><a href="${pageContext.request.contextPath}/boardList.do">Free Board</a></li>
-                            <li><a href="#">HC Jam</a></li>
+                            <li><a href="${pageContext.request.contextPath}/totalRanking.do">TOTAL RANKING</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Game
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">1 to 50</a></li>
+                            <li><a href="${pageContext.request.contextPath}/1to50.do">1 to 50</a></li>
                             <li><a href="${pageContext.request.contextPath}/jellyfish.do">Flap Jellyfish</a></li>
                             <li><a href="${pageContext.request.contextPath}/hcjam.do">HC Jam</a></li>
                         </ul>
