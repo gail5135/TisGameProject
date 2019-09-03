@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper 
+   namespace="board.model.BoardMapper"><!-- =구분하기 위한 논리적인 이름 패키지명과 다르게 해도 된다. -->
+   
+   <select id="tabCount" resultType="int"><!-- 식별자는 tabCount 이고 int형이다. -->
+		select count(*) from tab
+   </select>
+	
+	<!-- [1] 글쓰기 -->
+   <insert id="insertBoard" parameterType="board.model.BoardVO"><!-- =board.model.BoardVO문이 들어온다 -->
+   		insert into board values(board_seq.nextval,#{name},#{pwd},#{subject:VARCHAR},#{content:VARCHAR},sysdate,0,#{filename:VARCHAR},#{filesize:NUMERIC})
+   								<!-- content가 null값을 허용하여 null값이 들어올 경우 jdbcType을 지정해야함 
+   									문자열=> VARCHAR
+   									숫자=> NUMERIC
+   									날짜=> DATE
+   								-->
+   </insert>
+   
+   <sql id="whereClause"><!-- =조각엘리먼트 -->
+   		<if test="findType != null and findKeyword !=''"><!-- =findType이 null이거나 검색어가 비었을때 -->
+	   		 <where>	
+	   		 	<choose>
+	   		 		<when test="findType==1"><!-- findType이 글제목 -->
+	   		 			subject like '%'||#{findKeyword}||'%'
+	   		 		</when>
+	   		 		<when test="findType==2"><!-- findType이 작성자 -->
+	   		 			name like '%'||#{findKeyword}||'%'
+	   		 		</when>
+	   		 		<when test="findType==3"><!-- findType이 글내용 -->
+	   		 			content like '%'||#{findKeyword}||'%'
+	   		 		</when>
+	   		 	</choose>
+	   		 </where>
+   		 </if>
+   </sql>
+   
+   
+   <!-- [2] 글목록 관련 (게시물 수 가져오기) -->
+   <select id="getTotalCount" resultType="int" parameterType="map"><!-- =map유형으로 바뀌었기 때문 -->
+   		 select count(idx) from board
+   		 <include refid="whereClause"/><!-- 검색시 필요한 where절 추가 -->
+   </select>
+   
+   <!-- [2] 글목록 가져오기 select문은 반드시 resultType을 기술해야한다.
+   		이 때 ArrayList로 가져오더라도 resultType에는 VO객체의 타입을 기술한다 
+   		글목록 가져올 때 해당하는 글의 댓글수도 같이 가져와 보여주기
+   		그러려면 BoardVO에 댓글수를 담아줄 프로퍼티가 필요하다.
+   		-->
+   <select id="listBoard" resultType="board" parameterType="map"><!-- board.model.BoardVO의 alias를 board로 지정함 (mybatis-config.xml에서) -->
+   		<!-- select * from board order by idx desc -->
+   		select * from
+		(select row_number() over(order by idx desc) rn, 
+		( select count(num) from reply where idx_fk=board.idx ) replyCount, board.* 
+		from board
+		<include refid="whereClause"/>
+		)
+		where rn between #{start} and #{end}
+   </select>
+   
+   <!-- [3] 조회수 증가 -->
+   <update id="updateReadnum" parameterType="string">
+   	update board set readnum = readnum+1 where idx = #{value}<!-- =#{idx}와 같음 -->
+   </update>
+   
+   <!-- [4] 게시글 내용 가져오기 (select문은 반드시 resultType을 지정한다.) -->
+   <select id="getBoard" resultType="Board" parameterType="string">
+   	select * from board where idx=#{value}
+   </select>
+   
+   <!-- [5] 게시글 삭제 -->
+   <delete id="deleteBoard" parameterType="string">
+    delete from board where idx=#{idx} <!-- #{value}로도 가능 -->
+   </delete>
+   
+   <!-- [6] 게시글 수정 -->
+   <update id="updateBoard" parameterType="board">
+   	update board set name=#{name}, subject=#{subject}, content=#{content:VARCHAR}, pwd=#{pwd}
+   	<if test="filename!=null and filename!=''">
+   	, filename=#{filename}, filesize=#{filesize}
+   	</if>
+   	where idx=#{idx}
+   </update>
+   
+   <!-- [7] 댓글 달기 관련 -->
+   <insert id="insertReply" parameterType="Reply">
+   	insert into reply values(reply_seq.nextval,#{userid},#{content:VARCHAR},sysdate,#{idx_fk})
+   </insert>
+   
+   <!-- [8] 댓글수 가져오기 -->
+   <select id="replyCount" parameterType="string" resultType="int">
+   	select count(num) from reply where idx_fk=#{value}
+   </select>
+   
+   <!-- [9] 특정 게시글에 대한 댓글 목록 가져오기 -->
+   <select id="listReply" resultType="Reply" parameterType="String">
+   	select * from reply where idx_fk=#{value} order by num desc
+   </select>
+</mapper>

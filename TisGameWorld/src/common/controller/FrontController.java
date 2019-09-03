@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 		urlPatterns = { "*.do" }, 
 		initParams = { 
 				@WebInitParam(name = "config", 
-		value = "C:\\MyJava\\Workspace\\TisGameWorld\\WebContent\\WEB-INF\\Command.properties")
+		value = "C:\\Users\\afree\\Desktop\\git\\TisGameWorld\\TisGameProject\\TisGameProject\\TisGameWorld\\WebContent\\WEB-INF\\Command.properties")
 		})
 public class FrontController extends HttpServlet {
 	
