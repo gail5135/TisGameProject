@@ -14,7 +14,7 @@ var colorConfig = {
     notice: '#ffffff',
     text: '#ffffff',
     note: 0xffffff, // Don't use '# 'color number
-    validArea: 0x333333, // Don't use '# 'color number
+    validArea: 0x202020, // Don't use '# 'color number
     keyGuideText: '#bfbfbf',
     score: '#ffc105',
     newBestScore: '#ff0000'
@@ -29,11 +29,11 @@ var scoreNum = 0;
 var notes = []
 var noteTimeTable = [ // Oasis - Don't Look Back In Anger
                     // intro
-                    [8800,1], [9200,4], [9500,2], [9900,3], [10300,1], [10600,4], [11000,2], [11400,3], 
-                    [11700,1], [12100,4], [12500,2], [12800,3], [13200,1], [13600,1], [13800,2], [14000,3], 
-                    [14300,4], [14700,1], [15000,4], [15500,2], [15800,3], [16100,1], [16500,4], [16900,2], 
-                    [17200,3], [17600,1], [18000,4], [18300,1], [18700,2], [19200,1], [19400,2], [19600,1], 
-                    [19800,2], [20100,1], 
+                    [8850,1], [9200,4], [9550,2], [9950,3], [10300,1], [10650,4], [11050,2], [11400,3], 
+                    [11750,1], [12100,4], [12500,2], [12850,3], [13200,1], [13600,1], [13800,2], [14000,3], 
+                    [14300,4], [14700,1], [15000,4], [15500,2], [15800,3], [16150,1], [16500,4], [16900,2], 
+                    [17250,3], [17600,1], [18000,4], [18350,2], [18700,3], [19200,2], [19400,3], [19600,2], 
+                    [19800,1], [20150,4], 
 
                     // verse (vocal)
                     [20550,1], [20600,3], [20950,2], [21300,4], [21650,1], [21800,3], [22400,3], [22750,2],
@@ -42,13 +42,19 @@ var noteTimeTable = [ // Oasis - Don't Look Back In Anger
                     [29700,4], [32300,1], [32650,1], [33350,2], [33550,1], [34100,4],
                     [34450,4], [34850,2], [35400,2], [35550,3], [36300,1], [36450,1], [36650,3], [37000,3],
                     [37400,2], [37750,1], [38300,1], [38450,2], [39900,4], [40300,3], [40500,2], [40800,4],
+                    [42450,2], [43200,3], 
                     [44300,1], [44500,1], [44650,2], [45050,3], [45200,3], [45750,4], [46150,4],
-                    [46450,2], [46850,1], [50150,1], [50350,1], [50550,3], [50900,4], [51100,2], [51600,1], 
+                    [46450,2], [46850,1], [47950,4], [48300,2], [49400,3], [50150,1], [50350,1], [50550,3], 
+                    [50900,4], [51100,2], [51600,1], 
                     [51950,1], [52300,4], [52700,3], [55600,2], [56000,1], [56350,2], [56900,4], [57100,4],
                     [57250,2], [57450,3], [58550,1], [58950,2], [59300,2], [59650,4], [59850,4], [60200,3],
-                    [60350,1], [61450,1], [61850,3], [62200,2], [62600,3], [62750,4], [63300,1],
-                    [63500,4], [63900,1], [64250,2], [66950,3], [67150,1], 
+                    [60400,1], [61450,1], [61850,3], [62200,2], [62600,3], [62750,4], [63300,1],
+                    [63500,4], [63900,1], [64250,2], [64750,3], [65100,2], [65450,3], [65800,2], [66150,2], 
+                    [66950,3], [67150,1],
                     [68800,2], [70250,3], [70600,1], [70950,4], [72050,2], [72500,3], [72800,1], [73100,4],
+                    
+                    [75500,2], [75900,3], [76550,4], [77100,1], [77650,4], [77850,3], [77950,2], [78350,3],
+                    [80250,2], [80500,3], [80750,2],
                     [80900,1], [81250,4], [81600,2], [83050,3], [83450,2], [83800,4], [84150,3],
                     [84550,1], [85300,4], [85600,3], [86000,2], [86700,3], [87100,1], [87450,4],
                     [88000,2], [88150,1], [90700,3], [92200,3], [92900,2], [93250,2], [95650,4],
@@ -76,9 +82,7 @@ class note extends Phaser.GameObjects.Rectangle {
                             alpha: 0,
                             duration: 300,
                             onComplete: ()=>{
-                                // this.disappear.remove();
                                 this.destroy();
-                                // console.log(notes.length);
                             }
                         }, this.scene);
 
@@ -126,11 +130,9 @@ class bootGame extends Phaser.Scene{
 
     preload(){
         // Load Assets (Images, GameMusics);        
+        this.load.image("profile", "assets/profile.jpeg")
         this.load.image("backGroundImage", "assets/noel.jpg");
-        // this.load.image("backGroundImage", "assets/album_art.jpg");
-        this.load.image("home", "assets/home.png");
-        this.load.image("reset", "assets/reset.png");
-        this.load.image("pause", "assets/pause.png");
+        this.load.spritesheet('icon', 'assets/icon_sprite.png',{ frameWidth: 120, frameHeight: 120 });
         this.load.audio('selectedMusic', "assets/don't_look_back_in_anger_cut_version.mp3"); 	
 
         
@@ -227,7 +229,8 @@ class guide extends Phaser.Scene{
         this.makeGuideText(sizeConfig.width/2, (sizeConfig.height/10)*4.75, "Or touch each screen area in time.");
         this.makeGuideText(sizeConfig.width/2, (sizeConfig.height/10)*6.25, "Thank you for playing this game. :-)");
     
-        var resetIcon = this.add.image((sizeConfig.width/2), (sizeConfig.height/10)*8, "reset");
+        // var resetIcon = this.add.image((sizeConfig.width/2), (sizeConfig.height/10)*8, "reset");
+        var resetIcon = this.add.sprite((sizeConfig.width/2), (sizeConfig.height/10)*8, "icon", 2);
         resetIcon.setOrigin(0.5);
         resetIcon.setInteractive().on('pointerdown', function(pointer, localX, localY, event){
             notes = [];
@@ -255,12 +258,16 @@ class about extends Phaser.Scene{
 
     }
     create(){
-        this.makeText(sizeConfig.width/2, (sizeConfig.height/10)*4.5, "Web Developer");
+        var profile = this.add.image(sizeConfig.width/2, sizeConfig.height/4.5, "profile");
+        profile.setOrigin(0.5);
+
+        this.makeText(sizeConfig.width/2, (sizeConfig.height/10)*4.5, "이해창 / Haechang Lee");
         this.makeText(sizeConfig.width/2, (sizeConfig.height/10)*5.25, "Node.js / React.js / Phaser.js(ver.3)");
         this.makeText(sizeConfig.width/2, (sizeConfig.height/10)*6, "gail5135@gmail.com");
         this.makeText(sizeConfig.width/2, (sizeConfig.height/10)*6.75, "기프티콘은 언제나 환영이야 ^o^");
     
-        var resetIcon = this.add.image((sizeConfig.width/2), (sizeConfig.height/10)*8.25, "reset");
+        // var resetIcon = this.add.image((sizeConfig.width/2), (sizeConfig.height/10)*8.25, "reset");
+        var resetIcon = this.add.sprite(sizeConfig.width/2, (sizeConfig.height/10)*8.25, 'icon', 2);
         resetIcon.setOrigin(0.5);
         resetIcon.setInteractive().on('pointerdown', function(pointer, localX, localY, event){
             notes = [];
@@ -330,12 +337,13 @@ class play extends Phaser.Scene{
     preload(){
         this.noteTimer = 5800; // 8600
         this.noteDropFlag = 0;
-        console.log(noteTimeTable.length);
+
+        scoreNum = 0;
 
         sizeConfig.validAreaX = 0;
         sizeConfig.validAreaY = (sizeConfig.height/10)*8.5;
         sizeConfig.validAreaWidth = sizeConfig.width/4;
-        sizeConfig.validAreaHeight = sizeConfig.height/7.5;
+        sizeConfig.validAreaHeight = sizeConfig.height/6.75;
     }
     
     create(){
@@ -344,7 +352,7 @@ class play extends Phaser.Scene{
         this.add.image(sizeConfig.width/2, sizeConfig.height/2, 'backGroundImage').setDepth(0);
 
         // Make Pause Icon
-        var pauseIcon = this.add.image(sizeConfig.width, 10, 'pause');
+        var pauseIcon = this.add.sprite(sizeConfig.width, 10, 'icon', 0);
         pauseIcon.setOrigin(1,0);
     
         // Make Score
@@ -425,7 +433,6 @@ class play extends Phaser.Scene{
 
     // Drop note to the music
     dropNote(){
-        // console.log(music.isPlaying);
         if(noteTimeTable.length > this.noteDropFlag){
             if(noteTimeTable[this.noteDropFlag][0] == this.noteTimer){
                 if(noteTimeTable[this.noteDropFlag][1] === 1){
@@ -488,16 +495,16 @@ class play extends Phaser.Scene{
 
         this.input.keyboard.on('keyup', function (event) {
             if(event.key === 'q'){
-                judgeLine[0].setFillStyle(colorConfig.validArea, 0.6);
+                judgeLine[0].setFillStyle(colorConfig.validArea, 0.75);
             }
             else if(event.key === 'w'){
-                judgeLine[1].setFillStyle(colorConfig.validArea, 0.6);
+                judgeLine[1].setFillStyle(colorConfig.validArea, 0.75);
             }
             else if(event.key === 'o'){
-                judgeLine[2].setFillStyle(colorConfig.validArea, 0.6);
+                judgeLine[2].setFillStyle(colorConfig.validArea, 0.75);
             }
             else if(event.key === 'p'){
-                judgeLine[3].setFillStyle(colorConfig.validArea, 0.6);
+                judgeLine[3].setFillStyle(colorConfig.validArea, 0.75);
             }
             else{
                 console.log('keyup: Not QWOP');
@@ -532,7 +539,7 @@ class play extends Phaser.Scene{
     // Make Judge Bar 
     makeOneJudgeArea(x, y, width, height,color){
         var judgeBar = this.add.rectangle(x, y, width, height, color);
-        judgeBar.setFillStyle(color, 0.5);
+        judgeBar.setFillStyle(color, 0.7);
         judgeBar.setOrigin(0);
         judgeBar.setDepth(1);
         return judgeBar;
@@ -604,14 +611,14 @@ class gameOver extends Phaser.Scene{
         result.setFontSize(200);
 
         // Make HomeIcon
-        var homeIcon = this.add.image(sizeConfig.width/3, (sizeConfig.height/5)*4, "home");
+        var homeIcon = this.add.sprite(sizeConfig.width/3, (sizeConfig.height/5)*4, "icon", 1);
         homeIcon.setOrigin(0.5);
         homeIcon.setInteractive().on('pointerdown', function(pointer, localX, localY, event){
             this.scene.scene.start('Title');
         });
 
         // Make ResetIcon
-        var resetIcon = this.add.image((sizeConfig.width/3)*2, (sizeConfig.height/5)*4, "reset");
+        var resetIcon = this.add.sprite((sizeConfig.width/3)*2, (sizeConfig.height/5)*4, "icon", 2);
         resetIcon.setOrigin(0.5);
         resetIcon.setInteractive().on('pointerdown', function(pointer, localX, localY, event){
             notes = [];
